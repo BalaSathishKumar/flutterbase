@@ -14,7 +14,7 @@ class ApiClient {
 
   ApiClient._() {
     _dio = Dio(BaseOptions(connectTimeout: 10000));    //https://reqres.in/   https://kaiwa-api.dev.weconnect.chat
-    _dio!.options.baseUrl = 'https://reqres.in/';
+    _dio!.options.baseUrl = 'http://43.204.94.62:9003/api/v1/';
     _dio!.interceptors.addAll([
       TokenOnHeaderInterceptor(),
       PrettyDioLogger(
@@ -124,12 +124,12 @@ class TokenOnHeaderInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     try {
-      String? token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjIwNiwiaWF0IjoxNjU4NDYyMzg5LCJleHAiOjE2NzE0MjIzODl9.OPyCWQDUTsL4rvFyLhTFmPadhA0BQIISEWviLF22h-k';
+      String? token = 'eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDdXJhIFBoYXJtYWN5IEFwcCIsInN1YiI6IjcyMDA1NTM2ODkiLCJpYXQiOjE2NzEyNTM2ODAsImV4cCI6MTY3MTMwMzY4MCwiUm9sZXMiOlsiVXNlciJdfQ.E-ews6tryp5p3DZ8NnFOEiNUXlxiJo3OApSBHMMZu3dXl470OFgLj_uatw6JQilPlD-mNrwUBOod8K1loENO8w';
       /***********************Get your token here****************************/
       //TODO Write your token generation code and pass through the headers
 
       /********************************************************************/
-      options.headers['Authorization'] = 'Bearer $token';
+      options.headers['X-Auth'] = '$token';
       Logger.appLogs('auth_token:: $token');
       super.onRequest(options, handler);
     } catch (error) {

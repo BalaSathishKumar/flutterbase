@@ -3,6 +3,8 @@ import 'package:base_flutter_provider_project/routes/router_name.dart';
 import 'package:base_flutter_provider_project/ui/home/home_screen.dart';
 import 'package:base_flutter_provider_project/ui/splash/splash.dart';
 
+import '../ui/home/products_by_categories.dart';
+
 // @CupertinoAutoRouter
 // @AdaptiveAutoRouter
 // @CustomAutoRouter
@@ -18,6 +20,11 @@ import 'package:base_flutter_provider_project/ui/splash/splash.dart';
       path: RouterNames.home,
       name: 'HomeRoute',
       page: HomePage,
+    ),
+    AutoRoute(
+      path: RouterNames.product,
+      name: 'ProductRoute',
+      page: ProductPageByCategories,
     ),
   ],
 )

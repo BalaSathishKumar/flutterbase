@@ -2,6 +2,7 @@ import 'package:base_flutter_provider_project/constants/strings.dart';
 import 'package:base_flutter_provider_project/constants/theme_color.dart';
 import 'package:base_flutter_provider_project/routes/router_pages.gr.dart';
 import 'package:base_flutter_provider_project/utils/app_bar_theme.dart';
+import 'package:base_flutter_provider_project/viewModel/base_view_model/productbycat_viewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/chatbotlist_viewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/home_viewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/test_viewmodel.dart';
@@ -38,6 +39,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<ChatBotlistViewModel>(
           create: (BuildContext ctx) => ChatBotlistViewModel(),
+        ),
+        ChangeNotifierProvider<ProdtoCatViewModel>(
+          create: (BuildContext ctx) => ProdtoCatViewModel(),
         ),
       ],
       child: MaterialApp.router(

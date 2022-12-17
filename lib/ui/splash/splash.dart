@@ -68,7 +68,8 @@ class _SplashState extends State<Splash> {
       context.router.replace(const OnBoardingRoute());
     }*/
     /********************************END***************************************/
-    context.router.replace(const HomeRoute());
+   // context.router.replace(const HomeRoute());
+    context.router.replace(const ProductRoute());
   }
 
   //To request permission

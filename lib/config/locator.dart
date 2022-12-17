@@ -1,3 +1,4 @@
+import 'package:base_flutter_provider_project/data/repositories/ProductbyCatRepo.dart';
 import 'package:base_flutter_provider_project/data/repositories/chatbotlist_repo.dart';
 import 'package:base_flutter_provider_project/data/repositories/home_repo.dart';
 import 'package:base_flutter_provider_project/data/repositories/test_repo.dart';
@@ -16,6 +17,7 @@ void setupLocator() async {
   locator.registerFactory(() => HomeRepository());
   locator.registerFactory(() => TestRepository());
   locator.registerFactory(() => ChatBotlistRepository());
+  locator.registerFactory(() => ProductbyCatRepository());
 
   // final SharedPrefs sharedPrefs = await SharedPrefs.getInstance();
   // locator.registerSingleton(sharedPrefs);

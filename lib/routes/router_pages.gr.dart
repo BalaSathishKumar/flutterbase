@@ -14,6 +14,9 @@ import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:flutter/material.dart' as _i4;
 
 import '../ui/home/home_screen.dart' as _i2;
+
+import '../ui/home/products_by_categories.dart' as _i5;
+
 import '../ui/splash/splash.dart' as _i1;
 
 class AppRouter extends _i3.RootStackRouter {
@@ -29,13 +32,20 @@ class AppRouter extends _i3.RootStackRouter {
     HomeRoute.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i2.HomePage());
+    },
+
+    ProductRoute.name: (routeData) {
+      return _i3.MaterialPageX<dynamic>(
+          routeData: routeData, child: _i5.ProductPageByCategories());
     }
+
   };
 
   @override
   List<_i3.RouteConfig> get routes => [
         _i3.RouteConfig(SplashRoute.name, path: '/'),
-        _i3.RouteConfig(HomeRoute.name, path: '/home')
+        _i3.RouteConfig(HomeRoute.name, path: '/home'),
+        _i3.RouteConfig(ProductRoute.name, path: '/product')
       ];
 }
 
@@ -53,4 +63,11 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
   const HomeRoute() : super(HomeRoute.name, path: '/home');
 
   static const String name = 'HomeRoute';
+}
+/// generated route for
+/// [_i5.HomePage]
+class ProductRoute extends _i3.PageRouteInfo<void> {
+  const ProductRoute() : super(ProductRoute.name, path: '/product');
+
+  static const String name = 'ProductRoute';
 }

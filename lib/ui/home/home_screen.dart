@@ -9,6 +9,7 @@ import 'package:base_flutter_provider_project/viewModel/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../viewModel/base_view_model/productbycat_viewmodel.dart';
 import '../../viewModel/test_viewmodel.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,6 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //late HomeViewModel _homeViewModel;
   late TestViewModel _testViewModel;
+  late ProdtoCatViewModel _prodbycatViewModel;
 
 //  late ChatBotlistViewModel _chatBotlistViewModel;
 
@@ -29,7 +31,9 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   //  _homeViewModel = Provider.of<HomeViewModel>(context, listen: false);
 
-    _testViewModel = Provider.of<TestViewModel>(context, listen: false);
+   // _testViewModel = Provider.of<TestViewModel>(context, listen: false);
+
+    _prodbycatViewModel = Provider.of<ProdtoCatViewModel>(context, listen: false);
 
   //  _chatBotlistViewModel = Provider.of<ChatBotlistViewModel>(context,listen: false);
     //UI render callback
@@ -37,7 +41,9 @@ class _HomePageState extends State<HomePage> {
       //Calling api after UI gets rendered successfully
      // _homeViewModel.fetchHome(onFailureRes: onFailureRes);
 
-      _testViewModel.fetchTestUser(onFailureRes: onFailureRes);
+    //  _testViewModel.fetchTestUser(onFailureRes: onFailureRes);
+
+      _prodbycatViewModel.fetchProdByCat(onFailureRes: onFailureRes);
 
     //  _chatBotlistViewModel.fetchChatbotList(onFailureRes: onFailureRes);
 
@@ -53,7 +59,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Consumer<TestViewModel>(
+        body: Consumer<ProdtoCatViewModel>(
           builder: (context, viewModel, child) {
             return viewModel.state == ViewState.busy
                 ? const Loader()
@@ -67,18 +73,48 @@ class _HomePageState extends State<HomePage> {
   Widget _renderBody() {
     return Column(
       children: [
-        Consumer<TestViewModel>(
+        Consumer<ProdtoCatViewModel>(
           builder: (context, viewModel, child) {
             return viewModel.state == ViewState.success
-                ? Container(
+                ?
+            Container(
                     padding: const EdgeInsets.all(Dimensions.dm_15),
-                    child: Text(
-                      viewModel.testResponsemodel?.data?.firstName ?? Strings.homePage,
+                    child: Card(
+                      child: Column(
+                        children: [
+                          Text(
+                            viewModel.prodtocResponsemodel?.data?[0].productName ?? Strings.homePage,
 
-                      style: const TextStyle(
-                        fontSize: Dimensions.dm_14,
-                        fontWeight: FontWeight.bold,
-                      ),
+                            style: const TextStyle(
+                              fontSize: Dimensions.dm_14,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 50,),
+                          GestureDetector(
+                            onTap: (){
+                              for(var i=0; i<=3 ; i++){
+                                print('print out side $i ');
+                                for(var j=1; j<=i ; j++){
+                                  print('print inside $i ');
+                                }
+                                print('');
+                            }
+                            },
+                            child: Text(
+                              viewModel.prodtocResponsemodel?.data?[0].imageUrl ?? Strings.homePage,
+
+                              style: const TextStyle(
+                                fontSize: Dimensions.dm_14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+
+                        ],
+                      )
+
+
                     ),
                   )
                 : const SizedBox.shrink();

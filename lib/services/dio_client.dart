@@ -58,7 +58,7 @@ class ApiClient {
     }
   }
 
-  Future<dynamic> post(String url, {body}) async {
+  Future<dynamic> post(String url, {required body}) async {
     try {
       Response response;
 

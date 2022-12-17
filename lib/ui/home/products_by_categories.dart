@@ -1,4 +1,6 @@
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +13,7 @@ import '../../utils/common_functions.dart';
 import '../../utils/logger.dart';
 import '../../viewModel/base_view_model/base_view_model.dart';
 import '../../viewModel/base_view_model/productbycat_viewmodel.dart';
+import '../../viewModel/productincrementviewmodel.dart';
 
 
 enum ApiType {
@@ -37,6 +40,7 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
   String? userToken;
   String? productName_temp;
   late ProdtoCatViewModel _prodbycatViewModel;
+  late ProductincrementViewModel _prodincViewModel;
 /*  final carouselController = CarouselController();*/
 
   getToken() async {
@@ -51,10 +55,14 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
   void initState() {
     getToken();
     _prodbycatViewModel = Provider.of<ProdtoCatViewModel>(context, listen: false);
+    _prodincViewModel = Provider.of<ProductincrementViewModel>(context, listen: false);
 
     WidgetsBinding.instance?.addPostFrameCallback((_) {
 
       _prodbycatViewModel.fetchProdByCat(onFailureRes: onFailureRes);
+
+
+
 
      });
 
@@ -180,11 +188,25 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
 
                                 onPressed: () {
                                   viewModel.prodtocResponsemodel?.data?[index].cartQuantity = 1;
-                                  qtyApi(
+                                  num? totalprice = viewModel.prodtocResponsemodel?.data?[index].price;
+                                  var itemData = {
+                                    "productId":  viewModel.prodtocResponsemodel?.data?[index].id.toString(),
+                                    "productName":  viewModel.prodtocResponsemodel?.data?[index].productName,
+                                    "quantity": 1,
+                                    "price":  viewModel.prodtocResponsemodel?.data?[index].price,
+                                    "manufacture":  viewModel.prodtocResponsemodel?.data?[index].manufacture,
+                                    "imageUrl":  viewModel.prodtocResponsemodel?.data?[index].imageUrl,
+                                    "total": 1 * totalprice!,
+                                  };
+                                  print('Post APi param ${itemData}');
+                                  var body = json.encode(itemData);
+                                  _prodincViewModel.productinc(onFailureRes: onFailureRes,body: body);
+
+                               /*   qtyApi(
                                     param0: viewModel.prodtocResponsemodel?.data,
                                       index: index,
                                       qty:  1,
-                                      apiType: ApiType.add);
+                                      apiType: ApiType.add);*/
                                 },
                                 child: Text(
                                   "ADD TO CART",
@@ -223,7 +245,22 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
                                 TextButton(
                                   child: const Text("+"),
                                   onPressed: () {
+                                    num? additem = viewModel.prodtocResponsemodel?.data?[index].cartQuantity;
+                                    num? totalprice = viewModel.prodtocResponsemodel?.data?[index].price;
                                     //TODO Stock Validation check needed
+                                    var itemData = {
+                                      "productId":  viewModel.prodtocResponsemodel?.data?[index].id.toString(),
+                                      "productName":  viewModel.prodtocResponsemodel?.data?[index].productName,
+                                      "quantity": additem! + 1,
+                                      "price":  viewModel.prodtocResponsemodel?.data?[index].price,
+                                      "manufacture":  viewModel.prodtocResponsemodel?.data?[index].manufacture,
+                                      "imageUrl":  viewModel.prodtocResponsemodel?.data?[index].imageUrl,
+                                      "total": 1 * totalprice!,
+                                    };
+                                    print('Post APi param ${itemData}');
+                                    var body = json.encode(itemData);
+                                    _prodincViewModel.productinc(onFailureRes: onFailureRes,body: body);
+
                               /*      if (viewModel.prodtocResponsemodel?.data?[index].quantity >= viewModel.prodtocResponsemodel?.data?[index].cartQuantity) {
                                       qtyApi(
                                         snapShot: snapShot,

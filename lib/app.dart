@@ -5,6 +5,7 @@ import 'package:base_flutter_provider_project/utils/app_bar_theme.dart';
 import 'package:base_flutter_provider_project/viewModel/base_view_model/productbycat_viewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/chatbotlist_viewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/home_viewmodel.dart';
+import 'package:base_flutter_provider_project/viewModel/productincrementviewmodel.dart';
 import 'package:base_flutter_provider_project/viewModel/test_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -42,6 +43,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ChangeNotifierProvider<ProdtoCatViewModel>(
           create: (BuildContext ctx) => ProdtoCatViewModel(),
+        ),
+        ChangeNotifierProvider<ProductincrementViewModel>(
+          create: (BuildContext ctx) => ProductincrementViewModel(),
         ),
       ],
       child: MaterialApp.router(

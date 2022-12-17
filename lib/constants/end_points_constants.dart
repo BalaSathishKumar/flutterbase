@@ -3,4 +3,5 @@ class EndPointConstants {
   static const String testurl = '/api/users/2';
   static const String chatbotlist = '/api/agent/chatbotlist/';
   static const String productbycategory = 'productsByCategory?prefix=Surgical';
+  static const String productincrement = 'addItems';
 }

@@ -30,6 +30,7 @@ class Strings {
   static const String permissionsRequired = 'Permissions required';
   static const String takeMeToSettings = 'Take me to settings';
   static const String somethingWentWrong = 'Something went wrong, Please try again!';
+  static const String successresp = 'Success';
   static const String homePage = 'Home Page';
   static const String connectionError = 'Connection Error';
 }

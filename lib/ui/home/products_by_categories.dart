@@ -72,6 +72,12 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
     errorAlert(context, error);
   }
 
+  onSuccessRes(String success) {
+    Logger.appLogs('onSuccessRes:: $success');
+    _prodbycatViewModel.fetchProdByCat(onFailureRes: onFailureRes);
+    //errorAlert(context, success);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -200,7 +206,7 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
                                   };
                                   print('Post APi param ${itemData}');
                                   var body = json.encode(itemData);
-                                  _prodincViewModel.productinc(onFailureRes: onFailureRes,body: body);
+                                  _prodincViewModel.productinc(onFailureRes: onFailureRes,onSuccessRes: onSuccessRes,body: body);
 
                                /*   qtyApi(
                                     param0: viewModel.prodtocResponsemodel?.data,
@@ -259,7 +265,7 @@ class _ProductPageByCategoriesState extends State<ProductPageByCategories> {
                                     };
                                     print('Post APi param ${itemData}');
                                     var body = json.encode(itemData);
-                                    _prodincViewModel.productinc(onFailureRes: onFailureRes,body: body);
+                                    _prodincViewModel.productinc(onFailureRes: onFailureRes,onSuccessRes: onSuccessRes,body: body);
 
                               /*      if (viewModel.prodtocResponsemodel?.data?[index].quantity >= viewModel.prodtocResponsemodel?.data?[index].cartQuantity) {
                                       qtyApi(

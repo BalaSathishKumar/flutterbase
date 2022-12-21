@@ -25,7 +25,7 @@ class ProductincrementViewModel extends BaseViewModel{
 
   AddItemResponse? get  prodincResponsemodel => _prodincreponsemodel;
 
-  Future<ModelProductList?> productinc({required Function(String) onFailureRes,required  dynamic body}) async {
+  Future<ModelProductList?> productinc({required Function(String) onFailureRes,required Function(String) onSuccessRes,required  dynamic body}) async {
     //Loader State
     setState(ViewState.busy);
 
@@ -34,6 +34,7 @@ class ProductincrementViewModel extends BaseViewModel{
       if (data != null) {
         _prodincreponsemodel = data;
         //Success State
+        onSuccessRes(Strings.successresp);
         setState(ViewState.success);
       }else{
         //Failed

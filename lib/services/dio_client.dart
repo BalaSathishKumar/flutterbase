@@ -124,7 +124,7 @@ class TokenOnHeaderInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     try {
-      String? token = 'eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDdXJhIFBoYXJtYWN5IEFwcCIsInN1YiI6IjcyMDA1NTM2ODkiLCJpYXQiOjE2NzEyNTM2ODAsImV4cCI6MTY3MTMwMzY4MCwiUm9sZXMiOlsiVXNlciJdfQ.E-ews6tryp5p3DZ8NnFOEiNUXlxiJo3OApSBHMMZu3dXl470OFgLj_uatw6JQilPlD-mNrwUBOod8K1loENO8w';
+      String? token = 'eyJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJDdXJhIFBoYXJtYWN5IEFwcCIsInN1YiI6IjcyMDA1NTM2ODkiLCJpYXQiOjE2NzE2MDAwNzQsImV4cCI6MTY3MTY1MDA3NCwiUm9sZXMiOlsiVXNlciJdfQ.UIFb6kGgEKC65Z06UBTD1L63f10rJkRmt7rKzmoK_Gc9pZtxiSoDuboUkB2UPPFGIKZWsQs_XtJQ0XBg7-mgCA';
       /***********************Get your token here****************************/
       //TODO Write your token generation code and pass through the headers
 
